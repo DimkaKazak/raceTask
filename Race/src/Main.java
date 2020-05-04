@@ -1,5 +1,6 @@
 import models.CarRace;
 import models.components.Wheel;
+import models.factory.CarFactory;
 import models.utils.MaterialState;
 import models.utils.RoutePoint;
 import models.utils.Point2D;
@@ -18,7 +19,17 @@ public class Main {
         System.out.println("Start race? (y/n) ");
 
         if(in.next().equals("y")) {
-            CarRace carRace= new CarRace();
+
+            System.out.println("Please, choose your car: BMW, Ferrari, Jaguar, Lamborgini, Porsche, Car (as Default)\n");
+            String userCarName = in.next();
+            Car userCar = CarFactory.getCarByName(userCarName);
+            userCar.setName(userCar.getName() + " (Your car)");
+
+
+            CarRace carRace = new CarRace();
+            userCar.setPosition(carRace.getRoute().getVectors().get(0));
+            carRace.getCars().add(userCar);
+
             double[] carProgressDistances = new double[carRace.getCars().size()];
             int[] carProgressPoint = new int[carRace.getCars().size()];
 

@@ -1,9 +1,8 @@
 package models.utils;
 
 import interfaces.CarsGenerator;
-import models.components.Engine;
-import models.components.Wheel;
-import models.vehicles.Car;
+import models.factory.CarFactory;
+import models.vehicles.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,22 +14,21 @@ public class RaceCarsGenerator implements CarsGenerator {
     public List<Car> generateCars() {
         Random random = new Random();
         List<Car> cars = new ArrayList<>();
+
         for (int i = 0 ; i < random.nextInt(10) ; i++){
-            String carName = random.nextBoolean() ?  "BMW" + (i + 1): "Ferrari" + (i + 1);
 
-            Engine carEngine;
-            if ( carName.equals("BMW" + (i+1)) ){
-                carEngine = new Engine(0.8);
-            } else {
-                carEngine = new Engine(1);
+            Car car = null;
+            switch ( random.nextInt(5) ){
+                case 0: car =  CarFactory.getCarByName("BMW"); break;
+                case 1: car =  CarFactory.getCarByName("Ferrari"); break;
+                case 2: car =  CarFactory.getCarByName("Jaguar"); break;
+                case 3: car =  CarFactory.getCarByName("Lamborgini"); break;
+                case 4: car =  CarFactory.getCarByName("Porsche"); break;
+                default: car = CarFactory.getCarByName("Car"); break;
             }
 
-            List<Wheel> wheels = new ArrayList<>();
-            for (int j = 0 ; j < 4 ; j++){
-                wheels.add( new Wheel() );
-            }
-
-            cars.add( new Car(carName, carEngine, wheels) );
+            car.setName( car.getName() + " " + (i + 1) );
+            if (car != null) cars.add( car );
         }
 
         return cars;
