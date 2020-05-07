@@ -5,7 +5,25 @@ import models.vehicles.Car;
 
 import java.util.List;
 
+
+/**
+ * This class observes all process of the race and tell results to user
+ */
 public class RaceSupervisor implements Supervisor {
+
+    /**
+     * Realisation of Singleton pattern
+     */
+    private static RaceSupervisor instance;
+
+    private RaceSupervisor(){}
+
+    public static RaceSupervisor getInstance(){
+        if(  instance == null){
+            instance = new RaceSupervisor();
+        }
+        return instance;
+    }
 
     @Override
     public void startRace() {

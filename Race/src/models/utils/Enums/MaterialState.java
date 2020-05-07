@@ -1,5 +1,8 @@
 package models.utils.Enums;
 
+/**
+ * Use to describe road quality
+ */
 public enum MaterialState{
     highway("highway"),
     ferry("ferryRoad"),

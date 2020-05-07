@@ -1,5 +1,8 @@
 package models.components;
 
+/**
+ * Engine class
+ */
 public class Engine extends TransportComponent {
 
     private double maxSpeed;

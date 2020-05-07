@@ -10,10 +10,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * RaceTrackGenerator: Singleton object ( only one for the whole race )
+ */
 public class RaceTrackGenerator implements TrackGenerator {
 
     private static RaceTrackGenerator instance;
 
+    /**
+     * Realisation of Singleton pattern
+     */
     private RaceTrackGenerator(){}
 
     public static RaceTrackGenerator getInstance() {
@@ -25,6 +31,9 @@ public class RaceTrackGenerator implements TrackGenerator {
         return instance;
     }
 
+    /**
+     * @return route, that generates with Random.class
+     */
     @Override
     public Route generateRoute() {
         Random random = new Random();
@@ -43,9 +52,12 @@ public class RaceTrackGenerator implements TrackGenerator {
         return new Route(routeVectors);
     }
 
+    /**
+     * @param routeVectors - RoutePoint from Points package
+     * @return true, if vectors don't cross each other, else false
+     */
     @Override
     public boolean checkVectorsIntersections(List<RoutePoint> routeVectors) {
-
         return false;
     }
 }

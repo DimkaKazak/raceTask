@@ -1,9 +1,15 @@
 package models.utils.Garage;
 
+/**
+ * Garage: Singleton object ( only one for the whole race )
+ */
 public class RaceGarage {
 
     private static RaceGarage instance;
 
+    /**
+     * Realisation of Singleton pattern
+     */
     private RaceGarage(RaceEngineService engineService, RaceWheelService wheelService){
         this.engineService = engineService;
         this.wheelService = wheelService;
@@ -16,6 +22,9 @@ public class RaceGarage {
         return instance;
     }
 
+    /**
+     * Services that Garage has
+     */
     private RaceEngineService engineService;
     private RaceWheelService wheelService;
 

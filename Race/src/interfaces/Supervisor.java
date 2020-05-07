@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface Supervisor {
 
-    public void startRace();
-    public void endRace();
-    public void announceTheWinner(Car car);
-    public void sayRaceProgress(List<Car> cars);
+    void startRace();
+    void endRace();
+    void announceTheWinner(Car car);
+    void sayRaceProgress(List<Car> cars);
 
 }

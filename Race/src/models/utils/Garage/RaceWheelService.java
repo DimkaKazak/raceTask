@@ -8,6 +8,10 @@ import java.util.List;
 
 public class RaceWheelService implements WheelService {
 
+    /**
+     * @param car - car in what we want to check wheels
+     * @return true, if everything okey, else false
+     */
     @Override
     public boolean checkWheels(Car car) {
         int counter = 0;
@@ -22,6 +26,11 @@ public class RaceWheelService implements WheelService {
         return counter == 4;
     }
 
+    /**
+     * @param car - car in what we want to change wheels
+     * @param wheel - wheel we want to change
+     * @param position - 1,2,3,4 wheel's position in car
+     */
     @Override
     public void changeWheel(Car car, Wheel wheel, int position) {
         List<Wheel> wheels = car.getWheels();
@@ -29,6 +38,10 @@ public class RaceWheelService implements WheelService {
         wheels.add(position, wheel);
     }
 
+    /**
+     * @param car - car in what we want to check wheels
+     * @param wheels - wheels we want to change
+     */
     @Override
     public void changeWheels(Car car, List<Wheel> wheels) {
 
@@ -44,12 +57,19 @@ public class RaceWheelService implements WheelService {
 
     }
 
+    /**
+     * @param car - car in what we want to delete wheel
+     * @param position - 1,2,3,4 wheel's position in car
+     */
     @Override
     public void deleteWheel(Car car, int position) {
         List<Wheel> wheels = car.getWheels();
         wheels.remove(position);
     }
 
+    /**
+     * @param car - car in what we want to delete wheels
+     */
     @Override
     public void deleteWheels(Car car) {
         List<Wheel> wheels = car.getWheels();

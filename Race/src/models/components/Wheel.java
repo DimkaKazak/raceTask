@@ -4,8 +4,8 @@ public class Wheel extends TransportComponent {
 
     private double frictionCoef;
 
-    public Wheel() {
-        this.frictionCoef = 1;
+    public Wheel(double frictionCoef) {
+        this.frictionCoef = frictionCoef;
     }
 
     public double getFrictionCoef() {

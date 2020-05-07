@@ -1,10 +1,17 @@
 package models;
 
 import models.utils.*;
+import models.utils.Garage.RaceGarage;
+import models.utils.Generators.RaceCarsGenerator;
+import models.utils.Generators.RaceTrackGenerator;
+import models.utils.Points.Point2D;
 import models.vehicles.Car;
 
 import java.util.List;
 
+/**
+ * Contains supervisor for telling progress to user, One garage on whole race, one route and cars that participate in race
+ */
 public class CarRace{
 
     private RaceSupervisor supervisor;
@@ -13,10 +20,10 @@ public class CarRace{
     private List<Car> cars;
 
     public CarRace(){
-        this.supervisor = new RaceSupervisor();
-        this.garage = new RaceGarage();
-        this.route = new RaceTrackGenerator().generateRoute();
-        this.cars = new RaceCarsGenerator().generateCars();
+        this.supervisor = RaceSupervisor.getInstance();
+        this.garage = RaceGarage.getInstance();
+        this.route = RaceTrackGenerator.getInstance().generateRoute();
+        this.cars =  RaceCarsGenerator.getInstance().generateCars();
 
         Point2D startPoint = route.getVectors().get(0);
         for (Car car : cars ) {

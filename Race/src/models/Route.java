@@ -1,11 +1,14 @@
 package models;
 
-import models.utils.RoutePoint;
+import models.utils.Points.RoutePoint;
 
 import java.util.List;
 
-import static models.utils.Point2DCalculations.calculateDistance;
+import static models.utils.Points.Point2DCalculations.calculateDistance;
 
+/**
+ * Route on which cars ride
+ */
 public class Route {
 
     private double totalDistance;
@@ -16,7 +19,13 @@ public class Route {
         this.totalDistance = calculateTotalDistance(vectors);
     }
 
-    private double calculateTotalDistance(List<RoutePoint> vectors){
+
+    /**
+     *
+     * @param vectors - all vectors of the road (or in other words: all 2DRoutePoints)
+     * @return total distance of the road
+     */
+    private static double calculateTotalDistance(List<RoutePoint> vectors){
         double totalDistance = 0;
         for (int i = 0 ; i < vectors.size() - 1 ; i++){
             RoutePoint currentVector = vectors.get(i);

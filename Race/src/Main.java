@@ -1,14 +1,15 @@
+import interfaces.WheelService;
 import models.CarRace;
 import models.components.Wheel;
 import models.factory.CarFactory;
-import models.utils.MaterialState;
-import models.utils.RoutePoint;
-import models.utils.Point2D;
+import models.utils.Enums.MaterialState;
+import models.utils.Points.RoutePoint;
+import models.utils.Points.Point2D;
 import models.vehicles.Car;
 
 import java.util.*;
 
-import static models.utils.Point2DCalculations.*;
+import static models.utils.Points.Point2DCalculations.*;
 
 public class Main {
 
@@ -17,18 +18,26 @@ public class Main {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         System.out.println("Start race? (y/n) ");
-
+        
         if(in.next().equals("y")) {
 
             System.out.println("Please, choose your car: BMW, Ferrari, Jaguar, Lamborgini, Porsche, Car (as Default)\n");
             String userCarName = in.next();
             Car userCar = CarFactory.getCarByName(userCarName);
-            userCar.setName(userCar.getName() + " (Your car)");
 
+            if (userCar == null){
+                CarFactory.getCarByName("Car");
+                System.out.println("We have some problems with this car, but we have another one. Get it and ride!");
+
+            }
 
             CarRace carRace = new CarRace();
-            userCar.setPosition(carRace.getRoute().getVectors().get(0));
-            carRace.getCars().add(userCar);
+
+            if (userCar != null) {
+                userCar.setName(userCar.getName() + " (Your car)");
+                userCar.setPosition(carRace.getRoute().getVectors().get(0));
+                carRace.getCars().add(userCar);
+            }
 
             double[] carProgressDistances = new double[carRace.getCars().size()];
             int[] carProgressPoint = new int[carRace.getCars().size()];
@@ -54,8 +63,8 @@ public class Main {
                     for (int i = 0; i < cars.size(); i++){
                         Car currentCar =  cars.get(i);
 
-                        if (!carRace.getGarage().checkWheels(currentCar)){
-                            carRace.getGarage().changeWheels(currentCar);
+                        if (!carRace.getGarage().getWheelService().checkWheels(currentCar)){
+                            carRace.getGarage().getWheelService().changeWheels(currentCar, null);
                             continue; // car need one turn to repair wheels
                         }
 

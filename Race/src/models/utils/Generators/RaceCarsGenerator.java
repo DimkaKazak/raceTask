@@ -8,8 +8,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * RaceCarsGenerator: Singleton object ( only one for the whole race )
+ */
 public class RaceCarsGenerator implements CarsGenerator {
 
+
+    /**
+     * Realisation of Singleton pattern
+     */
     private static RaceCarsGenerator instance;
 
     private RaceCarsGenerator(){}
@@ -23,6 +30,9 @@ public class RaceCarsGenerator implements CarsGenerator {
         return instance;
     }
 
+    /**
+     * @return cars, that generate with Random.class
+     */
     @Override
     public List<Car> generateCars() {
         Random random = new Random();

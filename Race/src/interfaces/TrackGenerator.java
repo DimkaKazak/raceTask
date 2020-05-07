@@ -1,7 +1,7 @@
 package interfaces;
 
 import models.Route;
-import models.utils.RoutePoint;
+import models.utils.Points.RoutePoint;
 import java.util.List;
 
 public interface TrackGenerator {

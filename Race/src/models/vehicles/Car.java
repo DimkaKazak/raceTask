@@ -2,10 +2,14 @@ package models.vehicles;
 
 import models.components.Engine;
 import models.components.Wheel;
-import models.utils.Point2D;
+import models.utils.Points.Point2D;
 
 import java.util.List;
 
+/**
+ * Car objects participate in race
+ * Car composes from Engine and Wheels for riding and Position on 2D map
+ */
 public class Car extends Transport {
 
     Engine engine;
