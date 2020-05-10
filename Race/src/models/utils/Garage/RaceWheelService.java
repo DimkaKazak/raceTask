@@ -10,7 +10,7 @@ public class RaceWheelService implements WheelService {
 
     /**
      * @param car - car in what we want to check wheels
-     * @return true, if everything okey, else false
+     * @return true, if everything okay, else false
      */
     @Override
     public boolean checkWheels(Car car) {

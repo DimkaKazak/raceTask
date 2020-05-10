@@ -1,9 +1,10 @@
 package models.factory;
 
-import models.components.Engine;
+import models.components.engines.*;
 import models.components.Wheel;
 import models.vehicles.*;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,136 +22,50 @@ public class CarFactory {
      */
     public static Car getCarByName(String name){
         String carPath = "models.vehicles." + name;
-        switch (name){
-            case "BMW": return getBMW(carPath);
-            case "Ferrari": return getFerrari(carPath);
-            case "Jaguar": return getJaguar(carPath);
-            case "Lamborgini": return getLamborgini(carPath);
-            case "Porsche": return getPorsche(carPath);
-            default: return getDefaultCar(carPath);
-        }
-    }
+        Class<?> curClass = null;
 
-
-    /**
-     * @param carInput - name of the class, that must build
-     * @return default Car realisation
-     */
-    private static Car getDefaultCar(String carInput){
-
-        Class<?> curClass;
         try {
-            curClass = Class.forName(carInput);
-            Class[] FerrariClassParams = {String.class, Engine.class, List.class};
+            curClass = Class.forName(carPath);
+            Class[] classParams;
             List<Wheel> wheels = createWheels();
-            return  (Car) curClass.getConstructor(FerrariClassParams).newInstance("Default Car", new Engine(0.7), wheels);
+            Engine engine = createEngine(name);
 
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
+            switch (name){
+                case "BMW":{
+                    classParams = new Class[]{String.class, BMWEngine.class, List.class};
+                    return (BMW) curClass.getConstructor(classParams).newInstance(name, (BMWEngine) engine, wheels);
+                }
+                case "Car":{
+                    classParams = new Class[]{String.class, Engine.class, List.class};
+                    return (Car) curClass.getConstructor(classParams).newInstance("Default " + name, engine, wheels);
+                }
+                case "Ferrari":{
+                    classParams = new Class[]{String.class, FerrariEngine.class, List.class};
+                    return (Ferrari) curClass.getConstructor(classParams).newInstance(name, (FerrariEngine) engine, wheels);
+                }
+                case "Jaguar":{
+                    classParams = new Class[]{String.class, JaguarEngine.class, List.class};
+                    return (Jaguar) curClass.getConstructor(classParams).newInstance(name, (JaguarEngine) engine, wheels);
+                }
+                case "Lamborgini":{
+                    classParams = new Class[]{String.class, LamborginiEngine.class, List.class};
+                    return (Lamborgini) curClass.getConstructor(classParams).newInstance(name, (LamborginiEngine) engine, wheels);
+                }
+                case "Porsche":{
+                    classParams = new Class[]{String.class, PorscheEngine.class, List.class};
+                    return (Porsche) curClass.getConstructor(classParams).newInstance(name, (PorscheEngine) engine, wheels);
+                }
+                default: return new Car("Default Car", engine, wheels);
+            }
+
+        } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InstantiationException | InvocationTargetException e) {
             e.printStackTrace();
         }
 
         return null;
     }
 
-    /**
-     * @param carInput - name of the class, that must build
-     * @return Ferrari object from vehicles package
-     */
-    private static Ferrari getFerrari(String carInput){
 
-        Class<?> curClass;
-        try {
-            curClass = Class.forName(carInput);
-            Class[] FerrariClassParams = {String.class, Engine.class, List.class};
-            List<Wheel> wheels = createWheels();
-            return  (Ferrari) curClass.getConstructor(FerrariClassParams).newInstance("Ferrari", new Engine(0), wheels);
-
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
-    /**
-     * @param carInput - name of the class, that must build
-     * @return BMW object from vehicles package
-     */
-    private static BMW getBMW(String carInput){
-
-        Class<?> curClass;
-        try {
-            curClass = Class.forName(carInput);
-            Class[] FerrariClassParams = {String.class, Engine.class, List.class};
-            List<Wheel> wheels = createWheels();
-            return  (BMW) curClass.getConstructor(FerrariClassParams).newInstance("BMW", new Engine(0), wheels);
-
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
-    /**
-     * @param carInput - name of the class, that must build
-     * @return Jaguar object from vehicles package
-     */
-    private static Jaguar getJaguar(String carInput){
-
-        Class<?> curClass;
-        try {
-            curClass = Class.forName(carInput);
-            Class[] FerrariClassParams = {String.class, Engine.class, List.class};
-            List<Wheel> wheels = createWheels();
-            return  (Jaguar) curClass.getConstructor(FerrariClassParams).newInstance("Jaguar", new Engine(0), wheels);
-
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
-    /**
-     * @param carInput - name of the class, that must build
-     * @return Lamborgini object from vehicles package
-     */
-    private static Lamborgini getLamborgini(String carInput){
-
-        Class<?> curClass;
-        try {
-            curClass = Class.forName(carInput);
-            Class[] FerrariClassParams = {String.class, Engine.class, List.class};
-            List<Wheel> wheels = createWheels();
-            return  (Lamborgini) curClass.getConstructor(FerrariClassParams).newInstance("Lamborgini", new Engine(0), wheels);
-
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
-    /**
-     * @param carInput - name of the class, that must build
-     * @return Porsche object from vehicles package
-     */
-    private static Porsche getPorsche(String carInput){
-
-        Class<?> curClass;
-        try {
-            curClass = Class.forName(carInput);
-            Class[] FerrariClassParams = {String.class, Engine.class, List.class};
-            List<Wheel> wheels = createWheels();
-            return  (Porsche) curClass.getConstructor(FerrariClassParams).newInstance("Ferrari", new Engine(0), wheels);
-
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
 
     /**
      * @return wheels that must be added to building car
@@ -161,6 +76,39 @@ public class CarFactory {
             wheels.add( new Wheel(1) );
         }
         return wheels;
+    }
+
+    /**
+     * @param type - the type of car (BMW, Ferrari and so on in {@link models.utils.Enums.Car})
+     * @return engine that must be added to building car
+     */
+    private static Engine createEngine(String type){
+        String enginePath;
+        if (type.toLowerCase().equals("car")){  enginePath = "models.components.engines.Engine";}
+        else { enginePath = "models.components.engines." + type + "Engine";}
+
+        Class<?> curClass;
+
+        try{
+            curClass = Class.forName(enginePath);
+            Class[] EngineClassParams = {double.class};
+            Constructor constructor = curClass.getConstructor(EngineClassParams);
+
+            switch (type){
+                case "BMW": return (BMWEngine) constructor.newInstance(models.utils.Enums.Engine.BMWEngine.getMaxSpeed());
+                case "Car": return (Engine) constructor.newInstance(models.utils.Enums.Engine.CarEngine.getMaxSpeed());
+                case "Ferrari": return (FerrariEngine) constructor.newInstance(models.utils.Enums.Engine.FerrariEngine.getMaxSpeed());
+                case "Jaguar": return (JaguarEngine) constructor.newInstance(models.utils.Enums.Engine.JaguarEngine.getMaxSpeed());
+                case "Lamborgini": return (LamborginiEngine) constructor.newInstance(models.utils.Enums.Engine.LamborginiEngine.getMaxSpeed());
+                case "Porsche": return (PorscheEngine) constructor.newInstance(models.utils.Enums.Engine.PorscheEngine.getMaxSpeed());
+                default: return null;
+            }
+
+        } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InstantiationException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
 }

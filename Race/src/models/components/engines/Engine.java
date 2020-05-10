@@ -1,4 +1,6 @@
-package models.components;
+package models.components.engines;
+
+import models.components.TransportComponent;
 
 /**
  * Engine class

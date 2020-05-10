@@ -1,10 +1,8 @@
 package interfaces;
 
-import models.components.Engine;
+import models.components.engines.Engine;
 import models.components.Wheel;
 import models.vehicles.Car;
-
-import java.util.List;
 
 public interface Garage {
 

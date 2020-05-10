@@ -1,5 +1,6 @@
 package models;
 
+
 import models.utils.Points.RoutePoint;
 
 import java.util.List;
@@ -42,10 +43,6 @@ public class Route {
 
     public List<RoutePoint> getVectors() {
         return vectors;
-    }
-
-    public void setTotalDistance(double totalDistance) {
-        this.totalDistance = totalDistance;
     }
 
     public void setVectors(List<RoutePoint> vectors) {

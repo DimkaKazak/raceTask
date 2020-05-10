@@ -1,15 +1,12 @@
-import interfaces.WheelService;
 import models.CarRace;
 import models.components.Wheel;
 import models.factory.CarFactory;
-import models.utils.Enums.MaterialState;
-import models.utils.Points.RoutePoint;
 import models.utils.Points.Point2D;
+import models.utils.Points.Point2DCalculations;
+import models.utils.Points.RoutePoint;
 import models.vehicles.Car;
 
 import java.util.*;
-
-import static models.utils.Points.Point2DCalculations.*;
 
 public class Main {
 
@@ -26,9 +23,8 @@ public class Main {
             Car userCar = CarFactory.getCarByName(userCarName);
 
             if (userCar == null){
-                CarFactory.getCarByName("Car");
+                userCar = CarFactory.getCarByName("Car");
                 System.out.println("We have some problems with this car, but we have another one. Get it and ride!");
-
             }
 
             CarRace carRace = new CarRace();
@@ -54,7 +50,6 @@ public class Main {
 
             double totalDistance = carRace.getRoute().getTotalDistance();
             List<Car> cars = carRace.getCars();
-            List<RoutePoint> routeVectors = carRace.getRoute().getVectors();
 
             while (isContinue){
 
@@ -79,10 +74,19 @@ public class Main {
                         Point2D currentPosition = currentCar.getPosition();
                         RoutePoint prevPoint = carRace.getRoute().getVectors().get(carProgressPoint[i]);
                         RoutePoint nextPoint = carRace.getRoute().getVectors().get(carProgressPoint[i] + 1);
-                        double distanceFromPrevPoint = calculateDistance(prevPoint, currentPosition);
-                        double distanceOfTheCurrentRoad = calculateDistance(prevPoint, nextPoint);
-                        double cos = calculateCos(prevPoint, nextPoint);
-                        double sin = calculateSin(prevPoint, nextPoint);
+
+                        double distanceFromPrevPoint = Point2DCalculations.calculateDistance(prevPoint, currentPosition);
+                        double distanceOfTheCurrentRoad = Point2DCalculations.calculateDistance(prevPoint, nextPoint);
+
+                        double cos;
+                        double sin;
+                        try{
+                            cos = Point2DCalculations.calculateCos(prevPoint, nextPoint);
+                            sin = Point2DCalculations.calculateSin(prevPoint, nextPoint);
+                        } catch (ArithmeticException e){
+                            e.printStackTrace();
+                            continue;
+                        }
 
                         if ( carDistance + distanceFromPrevPoint < distanceOfTheCurrentRoad){
                             currentPosition.setX(currentPosition.getX() + carDistance * cos);
@@ -129,20 +133,15 @@ public class Main {
     }
 
     private static void rescaleFrictionCoef(CarRace carRace, Car car, int progressPoint){
-        MaterialState materialState = carRace.getRoute()
+        float materialFrictionCoef = carRace.getRoute()
                 .getVectors()
                 .get(progressPoint)
-                .getMaterialState();
+                .getMaterialState()
+                .getFrictionCoef();
 
         for (Wheel wheel : car.getWheels() ){
             double rand = generateRandomDouble(-0.1, 0.1);
-
-            switch (materialState){
-                case ferry: wheel.setFrictionCoef( wheel.getFrictionCoef() * (0.5 + rand) ); break;
-                case highway: wheel.setFrictionCoef( wheel.getFrictionCoef() * (0.9 + rand) ); break;
-                case cityRoad: wheel.setFrictionCoef( wheel.getFrictionCoef() * (0.85 + rand) ); break;
-                case countryRoad: wheel.setFrictionCoef( wheel.getFrictionCoef() * (0.4 + rand) ); break;
-            }
+            wheel.setFrictionCoef( wheel.getFrictionCoef() * (materialFrictionCoef + rand) );
         }
 
     }

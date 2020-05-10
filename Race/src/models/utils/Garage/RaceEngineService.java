@@ -1,7 +1,7 @@
 package models.utils.Garage;
 
 import interfaces.EngineService;
-import models.components.Engine;
+import models.components.engines.Engine;
 import models.vehicles.Car;
 
 public class RaceEngineService implements EngineService{

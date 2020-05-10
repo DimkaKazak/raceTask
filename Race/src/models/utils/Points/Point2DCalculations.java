@@ -5,6 +5,8 @@ package models.utils.Points;
  */
 public class Point2DCalculations {
 
+    private static final double eps = Math.pow(10, -10);
+
     /**
      * @param current - first point
      * @param other - next point
@@ -24,9 +26,10 @@ public class Point2DCalculations {
      * @param other - next point
      * @return cosinus between current and other points
      */
-    public static double calculateCos(Point2D current, Point2D other){
+    public static double calculateCos(Point2D current, Point2D other) throws ArithmeticException{
 
         double distance = calculateDistance(current, other);
+        if (distance < eps) throw new ArithmeticException("It's the same points!");
         double deltaX = other.getX() - current.getX();
 
         return deltaX / distance;
@@ -37,9 +40,10 @@ public class Point2DCalculations {
      * @param other - next point
      * @return sinus between current and other points
      */
-    public static double calculateSin(Point2D current, Point2D other){
+    public static double calculateSin(Point2D current, Point2D other) throws ArithmeticException{
 
         double distance = calculateDistance(current, other);
+        if (distance < eps) throw new ArithmeticException("It's the same points!");
         double deltaY = other.getY() - current.getY();
 
         return deltaY / distance;

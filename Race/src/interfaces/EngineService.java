@@ -1,6 +1,6 @@
 package interfaces;
 
-import models.components.Engine;
+import models.components.engines.Engine;
 import models.vehicles.Car;
 
 public interface EngineService {
