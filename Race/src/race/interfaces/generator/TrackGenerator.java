@@ -6,7 +6,8 @@ import java.util.List;
 
 public interface TrackGenerator {
 
-    public Route generateRoute();
-    public boolean checkVectorsIntersections(List<RoutePoint> routeVectors);
+    Route generateRandomRoute();
+    Route generateRouteFromFile(String path);
+    boolean checkVectorsIntersections(List<RoutePoint> routeVectors);
 
 }

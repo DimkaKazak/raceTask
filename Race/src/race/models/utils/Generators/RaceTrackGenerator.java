@@ -1,6 +1,8 @@
 package race.models.utils.Generators;
 
+import IO.exception.UnableToReadException;
 import IO.exception.UnableToWriteException;
+import IO.reader.StreamTextFileReader;
 import IO.writer.StreamTextFileWriter;
 import race.interfaces.generator.TrackGenerator;
 import race.models.Route;
@@ -38,7 +40,7 @@ public class RaceTrackGenerator implements TrackGenerator {
      * @return route, that generates with Random.class
      */
     @Override
-    public Route generateRoute() {
+    public Route generateRandomRoute() {
         Random random = new Random();
         List<RoutePoint> routeVectors = new ArrayList<>();
         double x = 0;
@@ -50,6 +52,34 @@ public class RaceTrackGenerator implements TrackGenerator {
 
             RoutePoint currRoute = new RoutePoint(x, y, materialState);
             routeVectors.add(currRoute);
+        }
+
+        return new Route(routeVectors);
+    }
+
+
+    /**
+     * @param path - read from file with this path
+     * @return route, that generates with Random.class
+     */
+    @Override
+    public Route generateRouteFromFile(String path) {
+        StreamTextFileReader streamTextFileReader = new StreamTextFileReader(path);
+        List<RoutePoint> routeVectors = new ArrayList<>();
+
+        String[] points = new String[]{};
+        try {
+            points = streamTextFileReader.read().split("\n");
+        } catch (UnableToReadException e) {
+            e.printStackTrace();
+        }
+
+        for (String point : points){
+            String[] xy = point.split(",");
+            MaterialState materialState = EnumUtil.getRandomValueFromEnum(MaterialState.class);
+
+            RoutePoint currRoutePoint = new RoutePoint(Double.parseDouble(xy[0]), Double.parseDouble(xy[1]), materialState);
+            routeVectors.add(currRoutePoint);
         }
 
         return new Route(routeVectors);

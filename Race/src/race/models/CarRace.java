@@ -1,5 +1,6 @@
 package race.models;
 
+import IO.FileConstants;
 import race.models.utils.*;
 import race.models.utils.Garage.RaceGarage;
 import race.models.utils.Generators.RaceCarsGenerator;
@@ -22,8 +23,8 @@ public class CarRace{
     public CarRace(){
         this.supervisor = RaceSupervisor.getInstance();
         this.garage = RaceGarage.getInstance();
-        this.route = RaceTrackGenerator.getInstance().generateRoute();
-        this.cars =  RaceCarsGenerator.getInstance().generateCarsFromProperties();
+        this.route = RaceTrackGenerator.getInstance().generateRouteFromFile(FileConstants.POINTS_FILE_PATH);
+        this.cars =  RaceCarsGenerator.getInstance().generateCarsFromProperties(FileConstants.PROPERTIES_FILE_PATH);
 
         Point2D startPoint = route.getVectors().get(0);
         for (Car car : cars ) {

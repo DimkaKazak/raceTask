@@ -38,7 +38,6 @@ public class Main {
             }
 
             CarRace carRace = new CarRace();
-            RaceTrackGenerator.getInstance().writePointsToFile(FileConstants.POINTS_FILE_PATH, carRace.getRoute().getVectors());
 
             if (userCar != null) {
                 userCar.setName(userCar.getName() + " (Your car)");

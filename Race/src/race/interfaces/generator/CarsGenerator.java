@@ -7,6 +7,6 @@ import java.util.List;
 public interface CarsGenerator {
 
      List<Car> generateCarsByRandom();
-     List<Car> generateCarsFromProperties();
+     List<Car> generateCarsFromProperties(String path);
 
 }

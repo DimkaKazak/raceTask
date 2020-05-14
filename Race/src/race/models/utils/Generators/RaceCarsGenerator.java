@@ -63,10 +63,14 @@ public class RaceCarsGenerator implements CarsGenerator {
         return cars;
     }
 
+    /**
+     * @param path - read from file with this path
+     * @return cars, that generate with Random.class
+     */
     @Override
-    public List<Car> generateCarsFromProperties() {
+    public List<Car> generateCarsFromProperties(String path) {
         List<Car> cars = new ArrayList<>();
-        PropertyFileReader propertyFileReader = new PropertyFileReader(FileConstants.PROPERTIES_FILE_PATH);
+        PropertyFileReader propertyFileReader = new PropertyFileReader(path);
         try {
             propertyFileReader.read();
         } catch (UnableToReadException e) {
