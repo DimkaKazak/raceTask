@@ -1,6 +1,6 @@
 package models.utils.Generators;
 
-import interfaces.TrackGenerator;
+import interfaces.generator.TrackGenerator;
 import models.Route;
 import models.utils.Enums.EnumUtil;
 import models.utils.Enums.MaterialState;

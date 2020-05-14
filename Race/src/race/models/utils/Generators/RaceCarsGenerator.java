@@ -1,6 +1,6 @@
 package models.utils.Generators;
 
-import interfaces.CarsGenerator;
+import interfaces.generator.CarsGenerator;
 import models.factory.CarFactory;
 import models.vehicles.*;
 
