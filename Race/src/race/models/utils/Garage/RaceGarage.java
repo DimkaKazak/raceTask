@@ -1,4 +1,4 @@
-package models.utils.Garage;
+package race.models.utils.Garage;
 
 /**
  * Garage: Singleton object ( only one for the whole race )

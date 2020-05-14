@@ -1,8 +1,8 @@
-package models.factory;
+package race.models.factory;
 
-import models.components.engines.*;
-import models.components.Wheel;
-import models.vehicles.*;
+import race.models.components.engines.*;
+import race.models.components.Wheel;
+import race.models.vehicles.*;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -21,7 +21,7 @@ public class CarFactory {
      * @return one of the car from vehicles package
      */
     public static Car getCarByName(String name){
-        String carPath = "models.vehicles." + name;
+        String carPath = "race.models.vehicles." + name;
         Class<?> curClass = null;
 
         try {
@@ -79,13 +79,13 @@ public class CarFactory {
     }
 
     /**
-     * @param type - the type of car (BMW, Ferrari and so on in {@link models.utils.Enums.Car})
+     * @param type - the type of car (BMW, Ferrari and so on in {@link race.models.utils.Enums.Car})
      * @return engine that must be added to building car
      */
     private static Engine createEngine(String type){
         String enginePath;
-        if (type.toLowerCase().equals("car")){  enginePath = "models.components.engines.Engine";}
-        else { enginePath = "models.components.engines." + type + "Engine";}
+        if (type.toLowerCase().equals("car")){  enginePath = "race.models.components.engines.Engine";}
+        else { enginePath = "race.models.components.engines." + type + "Engine";}
 
         Class<?> curClass;
 
@@ -95,12 +95,12 @@ public class CarFactory {
             Constructor constructor = curClass.getConstructor(EngineClassParams);
 
             switch (type){
-                case "BMW": return (BMWEngine) constructor.newInstance(models.utils.Enums.Engine.BMWEngine.getMaxSpeed());
-                case "Car": return (Engine) constructor.newInstance(models.utils.Enums.Engine.CarEngine.getMaxSpeed());
-                case "Ferrari": return (FerrariEngine) constructor.newInstance(models.utils.Enums.Engine.FerrariEngine.getMaxSpeed());
-                case "Jaguar": return (JaguarEngine) constructor.newInstance(models.utils.Enums.Engine.JaguarEngine.getMaxSpeed());
-                case "Lamborgini": return (LamborginiEngine) constructor.newInstance(models.utils.Enums.Engine.LamborginiEngine.getMaxSpeed());
-                case "Porsche": return (PorscheEngine) constructor.newInstance(models.utils.Enums.Engine.PorscheEngine.getMaxSpeed());
+                case "BMW": return (BMWEngine) constructor.newInstance(race.models.utils.Enums.Engine.BMWEngine.getMaxSpeed());
+                case "Car": return (Engine) constructor.newInstance(race.models.utils.Enums.Engine.CarEngine.getMaxSpeed());
+                case "Ferrari": return (FerrariEngine) constructor.newInstance(race.models.utils.Enums.Engine.FerrariEngine.getMaxSpeed());
+                case "Jaguar": return (JaguarEngine) constructor.newInstance(race.models.utils.Enums.Engine.JaguarEngine.getMaxSpeed());
+                case "Lamborgini": return (LamborginiEngine) constructor.newInstance(race.models.utils.Enums.Engine.LamborginiEngine.getMaxSpeed());
+                case "Porsche": return (PorscheEngine) constructor.newInstance(race.models.utils.Enums.Engine.PorscheEngine.getMaxSpeed());
                 default: return null;
             }
 

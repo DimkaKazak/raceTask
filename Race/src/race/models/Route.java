@@ -1,11 +1,11 @@
-package models;
+package race.models;
 
 
-import models.utils.Points.RoutePoint;
+import race.models.utils.Points.RoutePoint;
 
 import java.util.List;
 
-import static models.utils.Points.Point2DCalculations.calculateDistance;
+import static race.models.utils.Points.Point2DCalculations.calculateDistance;
 
 /**
  * Route on which cars ride

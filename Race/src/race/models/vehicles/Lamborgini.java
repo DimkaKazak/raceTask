@@ -1,7 +1,7 @@
-package models.vehicles;
+package race.models.vehicles;
 
-import models.components.Wheel;
-import models.components.engines.LamborginiEngine;
+import race.models.components.Wheel;
+import race.models.components.engines.LamborginiEngine;
 
 import java.util.List;
 

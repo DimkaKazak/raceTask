@@ -1,8 +1,11 @@
-package models.utils.Generators;
+package race.models.utils.Generators;
 
-import interfaces.generator.CarsGenerator;
-import models.factory.CarFactory;
-import models.vehicles.*;
+import IO.FileConstants;
+import IO.exception.UnableToReadException;
+import IO.reader.PropertyFileReader;
+import race.interfaces.generator.CarsGenerator;
+import race.models.factory.CarFactory;
+import race.models.vehicles.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +37,7 @@ public class RaceCarsGenerator implements CarsGenerator {
      * @return cars, that generate with Random.class
      */
     @Override
-    public List<Car> generateCars() {
+    public List<Car> generateCarsByRandom() {
         Random random = new Random();
         List<Car> cars = new ArrayList<>();
 
@@ -59,5 +62,24 @@ public class RaceCarsGenerator implements CarsGenerator {
 
         return cars;
     }
+
+    @Override
+    public List<Car> generateCarsFromProperties() {
+        List<Car> cars = new ArrayList<>();
+        PropertyFileReader propertyFileReader = new PropertyFileReader(FileConstants.PROPERTIES_FILE_PATH);
+        try {
+            propertyFileReader.read();
+        } catch (UnableToReadException e) {
+            e.printStackTrace();
+        }
+
+        String[] enemyCars = propertyFileReader.getPropertyValue("enemy").split(";");
+        for (String enemy : enemyCars ) {
+            cars.add( CarFactory.getCarByName(enemy) );
+        }
+
+        return cars;
+    }
+
 
 }

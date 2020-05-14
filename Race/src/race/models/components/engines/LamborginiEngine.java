@@ -1,4 +1,4 @@
-package models.components.engines;
+package race.models.components.engines;
 
 public class LamborginiEngine extends Engine{
     public LamborginiEngine(double maxSpeed) {

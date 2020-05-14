@@ -1,11 +1,12 @@
-package interfaces.generator;
+package race.interfaces.generator;
 
-import models.vehicles.Car;
+import race.models.vehicles.Car;
 
 import java.util.List;
 
 public interface CarsGenerator {
 
-    public List<Car> generateCars();
+     List<Car> generateCarsByRandom();
+     List<Car> generateCarsFromProperties();
 
 }

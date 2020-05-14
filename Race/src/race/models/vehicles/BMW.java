@@ -1,7 +1,7 @@
-package models.vehicles;
+package race.models.vehicles;
 
-import models.components.engines.BMWEngine;
-import models.components.Wheel;
+import race.models.components.engines.BMWEngine;
+import race.models.components.Wheel;
 
 import java.util.List;
 

@@ -1,10 +1,14 @@
-import models.CarRace;
-import models.components.Wheel;
-import models.factory.CarFactory;
-import models.utils.Points.Point2D;
-import models.utils.Points.Point2DCalculations;
-import models.utils.Points.RoutePoint;
-import models.vehicles.Car;
+import IO.FileConstants;
+import IO.exception.UnableToReadException;
+import IO.reader.PropertyFileReader;
+import race.models.CarRace;
+import race.models.components.Wheel;
+import race.models.factory.CarFactory;
+import race.models.utils.Generators.RaceTrackGenerator;
+import race.models.utils.Points.Point2D;
+import race.models.utils.Points.Point2DCalculations;
+import race.models.utils.Points.RoutePoint;
+import race.models.vehicles.Car;
 
 import java.util.*;
 
@@ -18,8 +22,14 @@ public class Main {
         
         if(in.next().equals("y")) {
 
-            System.out.println("Please, choose your car: BMW, Ferrari, Jaguar, Lamborgini, Porsche, Car (as Default)\n");
-            String userCarName = in.next();
+            PropertyFileReader propertyFileReader = new PropertyFileReader(FileConstants.PROPERTIES_FILE_PATH);
+            try {
+                propertyFileReader.read();
+            } catch (UnableToReadException e) {
+                e.printStackTrace();
+            }
+
+            String userCarName = propertyFileReader.getPropertyValue("player");
             Car userCar = CarFactory.getCarByName(userCarName);
 
             if (userCar == null){
@@ -28,6 +38,7 @@ public class Main {
             }
 
             CarRace carRace = new CarRace();
+            RaceTrackGenerator.getInstance().writePointsToFile(FileConstants.POINTS_FILE_PATH, carRace.getRoute().getVectors());
 
             if (userCar != null) {
                 userCar.setName(userCar.getName() + " (Your car)");

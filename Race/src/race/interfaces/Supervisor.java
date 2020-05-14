@@ -1,6 +1,6 @@
-package interfaces;
+package race.interfaces;
 
-import models.vehicles.Car;
+import race.models.vehicles.Car;
 
 import java.util.List;
 

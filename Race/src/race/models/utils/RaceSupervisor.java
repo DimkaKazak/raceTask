@@ -1,7 +1,7 @@
-package models.utils;
+package race.models.utils;
 
-import interfaces.Supervisor;
-import models.vehicles.Car;
+import race.interfaces.Supervisor;
+import race.models.vehicles.Car;
 
 import java.util.List;
 

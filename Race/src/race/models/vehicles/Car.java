@@ -1,8 +1,8 @@
-package models.vehicles;
+package race.models.vehicles;
 
-import models.components.engines.Engine;
-import models.components.Wheel;
-import models.utils.Points.Point2D;
+import race.models.components.engines.Engine;
+import race.models.components.Wheel;
+import race.models.utils.Points.Point2D;
 
 import java.util.List;
 

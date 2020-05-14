@@ -1,7 +1,7 @@
-package models.vehicles;
+package race.models.vehicles;
 
-import models.components.Wheel;
-import models.components.engines.FerrariEngine;
+import race.models.components.Wheel;
+import race.models.components.engines.FerrariEngine;
 
 import java.util.List;
 

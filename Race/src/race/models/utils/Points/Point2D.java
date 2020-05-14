@@ -1,4 +1,4 @@
-package models.utils.Points;
+package race.models.utils.Points;
 
 public class Point2D {
 

@@ -1,11 +1,11 @@
-package models;
+package race.models;
 
-import models.utils.*;
-import models.utils.Garage.RaceGarage;
-import models.utils.Generators.RaceCarsGenerator;
-import models.utils.Generators.RaceTrackGenerator;
-import models.utils.Points.Point2D;
-import models.vehicles.Car;
+import race.models.utils.*;
+import race.models.utils.Garage.RaceGarage;
+import race.models.utils.Generators.RaceCarsGenerator;
+import race.models.utils.Generators.RaceTrackGenerator;
+import race.models.utils.Points.Point2D;
+import race.models.vehicles.Car;
 
 import java.util.List;
 
@@ -23,7 +23,7 @@ public class CarRace{
         this.supervisor = RaceSupervisor.getInstance();
         this.garage = RaceGarage.getInstance();
         this.route = RaceTrackGenerator.getInstance().generateRoute();
-        this.cars =  RaceCarsGenerator.getInstance().generateCars();
+        this.cars =  RaceCarsGenerator.getInstance().generateCarsFromProperties();
 
         Point2D startPoint = route.getVectors().get(0);
         for (Car car : cars ) {

@@ -44,6 +44,6 @@ public class PropertyFileReader extends BaseReader implements Reader {
     }
 
     public String getPropertyValue(String key) {
-        return this.props.getProperty(key);
+        return String.valueOf(this.props.getOrDefault(key, ""));
     }
 }

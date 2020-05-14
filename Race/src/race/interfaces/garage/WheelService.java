@@ -1,7 +1,7 @@
-package interfaces.garage;
+package race.interfaces.garage;
 
-import models.components.Wheel;
-import models.vehicles.Car;
+import race.models.components.Wheel;
+import race.models.vehicles.Car;
 
 import java.util.List;
 

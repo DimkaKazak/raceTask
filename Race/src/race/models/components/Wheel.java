@@ -1,4 +1,4 @@
-package models.components;
+package race.models.components;
 
 public class Wheel extends TransportComponent {
 

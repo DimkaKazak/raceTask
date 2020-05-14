@@ -1,7 +1,7 @@
-package interfaces.generator;
+package race.interfaces.generator;
 
-import models.Route;
-import models.utils.Points.RoutePoint;
+import race.models.Route;
+import race.models.utils.Points.RoutePoint;
 import java.util.List;
 
 public interface TrackGenerator {

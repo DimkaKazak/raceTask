@@ -1,4 +1,4 @@
-package models.vehicles;
+package race.models.vehicles;
 
 public abstract class Transport {
 

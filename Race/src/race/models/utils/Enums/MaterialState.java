@@ -1,4 +1,4 @@
-package models.utils.Enums;
+package race.models.utils.Enums;
 
 /**
  * Use to describe road quality

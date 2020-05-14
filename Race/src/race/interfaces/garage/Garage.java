@@ -1,8 +1,8 @@
-package interfaces.garage;
+package race.interfaces.garage;
 
-import models.components.engines.Engine;
-import models.components.Wheel;
-import models.vehicles.Car;
+import race.models.components.engines.Engine;
+import race.models.components.Wheel;
+import race.models.vehicles.Car;
 
 public interface Garage {
 

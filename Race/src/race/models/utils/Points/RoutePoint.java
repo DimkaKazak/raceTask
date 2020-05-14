@@ -1,7 +1,6 @@
-package models.utils.Points;
+package race.models.utils.Points;
 
-import models.utils.Enums.MaterialState;
-import models.utils.Points.Point2D;
+import race.models.utils.Enums.MaterialState;
 
 /**
  * Use this class for marking points of the road

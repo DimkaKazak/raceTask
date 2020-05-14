@@ -1,11 +1,14 @@
-package models.utils.Generators;
+package race.models.utils.Generators;
 
-import interfaces.generator.TrackGenerator;
-import models.Route;
-import models.utils.Enums.EnumUtil;
-import models.utils.Enums.MaterialState;
-import models.utils.Points.RoutePoint;
+import IO.exception.UnableToWriteException;
+import IO.writer.StreamTextFileWriter;
+import race.interfaces.generator.TrackGenerator;
+import race.models.Route;
+import race.models.utils.Enums.EnumUtil;
+import race.models.utils.Enums.MaterialState;
+import race.models.utils.Points.RoutePoint;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -59,5 +62,22 @@ public class RaceTrackGenerator implements TrackGenerator {
     @Override
     public boolean checkVectorsIntersections(List<RoutePoint> routeVectors) {
         return false;
+    }
+
+
+    /**
+     * @param path - to what file we write
+     * @param routePoints - what points we write
+     */
+    public void writePointsToFile(String path, List<RoutePoint> routePoints){
+        StreamTextFileWriter streamTextFileWriter = new StreamTextFileWriter();
+
+        for (RoutePoint currentPoint : routePoints){
+            try {
+                streamTextFileWriter.append(path, currentPoint.getX() + ", " + currentPoint.getY() + "\n");
+            } catch (UnableToWriteException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

@@ -1,4 +1,4 @@
-package models.utils.Points;
+package race.models.utils.Points;
 
 /**
  * Use this class for calculations between 2 dimensional points

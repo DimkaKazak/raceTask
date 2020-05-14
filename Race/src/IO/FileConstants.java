@@ -1,6 +1,8 @@
+package IO;
+
 import java.io.File;
 
-public class Constants {
+public class FileConstants {
 
     private static final String sep = File.separator;
 

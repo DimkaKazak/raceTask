@@ -1,8 +1,8 @@
-package models.utils.Garage;
+package race.models.utils.Garage;
 
-import interfaces.garage.WheelService;
-import models.components.Wheel;
-import models.vehicles.Car;
+import race.interfaces.garage.WheelService;
+import race.models.components.Wheel;
+import race.models.vehicles.Car;
 
 import java.util.List;
 
