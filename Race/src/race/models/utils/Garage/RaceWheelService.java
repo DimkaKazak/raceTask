@@ -1,6 +1,6 @@
 package models.utils.Garage;
 
-import interfaces.WheelService;
+import interfaces.garage.WheelService;
 import models.components.Wheel;
 import models.vehicles.Car;
 

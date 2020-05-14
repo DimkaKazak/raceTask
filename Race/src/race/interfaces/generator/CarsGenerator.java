@@ -1,4 +1,4 @@
-package interfaces;
+package interfaces.generator;
 
 import models.vehicles.Car;
 

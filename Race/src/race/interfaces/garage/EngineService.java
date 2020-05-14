@@ -1,4 +1,4 @@
-package interfaces;
+package interfaces.garage;
 
 import models.components.engines.Engine;
 import models.vehicles.Car;

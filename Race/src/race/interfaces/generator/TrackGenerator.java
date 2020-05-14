@@ -1,4 +1,4 @@
-package interfaces;
+package interfaces.generator;
 
 import models.Route;
 import models.utils.Points.RoutePoint;
