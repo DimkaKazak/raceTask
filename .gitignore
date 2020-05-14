@@ -17,4 +17,7 @@
 # Config files
 *.iml
 
+# OutPut Files
+.idea/Race/files/points
+
 
